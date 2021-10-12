@@ -126,7 +126,7 @@ if (isClusterMode) {
  * Returns the aggregate metric if running in cluster mode, otherwise, just the current
  * instance's metrics
  */
-export async function getAggregateMetrics(timeoutInMilliseconds = 10e3) {
+export async function getAggregateRegister(timeoutInMilliseconds = 10e3) {
   if (isClusterMode) {
     const procMetrics = await awaitAllProcMessagesReplies('metrics-get', timeoutInMilliseconds);
     return client.AggregatorRegistry.aggregate(procMetrics.map(o => o.data));
